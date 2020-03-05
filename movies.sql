@@ -54,9 +54,25 @@ CREATE TABLE 'movies'.'actors' ('id' INT NOT NULL AUTO_INCREMENT,
 (45) NULL, 'DOB' DATE NULL, 'movieID' INT NULL, PRIMARY KEY
 ('id'));
 -- #13.Pick 3 movies and create insert statements for 10 actors each. You should use the multi value insert statements
-INSERT INTO Movies.Actors
-  (ActorName, CharacterName, MoviesId)
-VALUES
+UPDATE movieshw.movies
+SET MPAA_RATING = 'E'
+WHERE id = 107;
+
+UPDATE movieshw.movies
+SET MPAA_RATING = 'PG'
+WHERE id = 3;
+
+UPDATE movieshw.movies
+SET MPAA_RATING = 'R'
+WHERE id = 111;
+
+UPDATE movieshw.movies
+SET MPAA_RATING = 'PG-13'
+WHERE id = 1221;
+
+UPDATE movieshw.movies
+SET MPAA_RATING = 'G'
+WHERE id = 59;
 
 
 -- #14.Create a new column in the movie table to hold the MPAA rating. UPDATE 5 different movies to their correct rating
