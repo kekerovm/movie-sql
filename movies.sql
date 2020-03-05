@@ -43,19 +43,45 @@ FROM movieshw.movies
 WHERE genres LIKE '%comedy'
   AND title LIKE '%death';
 -- #11. Find any movies from either 2001 or 2002 with a title containing super
-SELECT *
-FROM movieshw.movies
-WHERE title LIKE ('%2001%' OR '%2002%'
-)
-  AND genres LIKE '%super%';
+SELECT title
+FROM movies
+WHERE title LIKE '%super%' AND title LIKE '%(2002%)'
+  OR title LIKE '%super%' AND title LIKE '%(2001%)';
 -- #12.Create a new table called actors (We are going to pretend the actor can only play in one movie). The table should include name, character name, foreign key to movies and date of birth at least plus an id field.
-SELECT *
+CREATE TABLE 'movies'.'actors' ('id' INT NOT NULL AUTO_INCREMENT,
+'fullName' VARCHAR
+(45) NULL, 'characterName' VARCHAR
+(45) NULL, 'DOB' DATE NULL, 'movieID' INT NULL, PRIMARY KEY
+('id'));
 -- #13.Pick 3 movies and create insert statements for 10 actors each. You should use the multi value insert statements
-SELECT *
-FROM movieshw.movies
+INSERT INTO Movies.Actors
+  (ActorName, CharacterName, MoviesId)
+VALUES
+
+
 -- #14.Create a new column in the movie table to hold the MPAA rating. UPDATE 5 different movies to their correct rating
 SELECT column movieshw
 .movies.rating
-UPDATE rating;
+
+UPDATE movies SET MPAA = "G" WHERE id = 1;
+UPDATE movies SET MPAA = "PG" WHERE id = 2;
+UPDATE movies SET MPAA = "PG-13" WHERE id = 10;
+UPDATE movies SET MPAA = "R" WHERE id = 23;
+UPDATE movies SET MPAA = "R" WHERE id = 5110;
+
 -- // With Joins
 -- #15. Find all the ratings for the movie Godfather, show just the title and the rating
+
+-- #16. Order the previous objective by newest to oldest
+
+-- #17. Find the comedies from 2005 and get the title and imdbid from the links table
+SELECT movies.title, l.imdb_Id
+FROM movieshw.movies
+  LEFT JOIN links l ON movies.id = l.movies_Id
+WHERE movies.title LIKE '%(2005)%'
+-- #18. Find all movies that have no ratings
+SELECT m.title, AVG(r.rating) as avgr
+FROM movieshw.movies
+  LEFT JOIN ratings r
+  ON movies.id = r.movies_id
+GROUP BY movies.id;
